@@ -35,7 +35,7 @@ impl HttpServerMiddleware for IsAliveMiddleware {
         ctx: &mut HttpContext,
         get_next: &mut HttpServerRequestFlow,
     ) -> Result<HttpOkResult, HttpFailResult> {
-        if ctx.request.get_path_lower_case() == "/api/isalive" {
+        if ctx.request.get_path().to_lowercase() == "/api/isalive" {
             return HttpOutput::as_json(self.is_alive.clone())
                 .into_ok_result(false)
                 .into();
